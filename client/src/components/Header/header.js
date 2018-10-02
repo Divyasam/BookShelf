@@ -33,7 +33,7 @@ class Header extends Component {
                 />
 
                 <Link to="/" className="logo">
-                        The Book Shelf
+                        Passport Services
                 </Link>
        
             </header>

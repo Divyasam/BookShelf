@@ -16,13 +16,12 @@ class UserPosts extends Component {
                 <tr key={item._id}>
                     <td><Link to={
                         `/user/edit-post/${item._id}`
-                    }>
-                        {item.name}
-                    </Link></td>
-                    <td>{item.author}</td>
-                    <td>
-                        {moment(item.createAt).format("MM/DD/YY")}
-                    </td>
+                    }>{item.firstName}</Link></td>
+                    <td>{item.lastName}</td>
+                    <td>{item.gender}</td>
+                    <td>{item.dateOfBirth}</td>
+                    <td>{item.emailAddress}</td>
+                    <td>{item.phoneNumber}</td>                    
                 </tr>
             ))
         :null
@@ -32,13 +31,16 @@ class UserPosts extends Component {
         let user = this.props.user;
         return (
             <div className="user_posts">
-                <h4>Your reviews:</h4>
+                <h4>Applicants Details:</h4>
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Author</th>
-                            <th>Date</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                            <th>Email Address</th>
+                            <th>Phone Number</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -38,14 +38,14 @@ const SidenavItems = ({user}) => {
         {
             type:'navItem',
             icon:'file-text-o',
-            text:'My reviews',
+            text:'Passport Applications',
             link:'/user/user-reviews',
             restricted:true
         },
         {
             type:'navItem',
             icon:'file-text-o',
-            text:'Add reviews',
+            text:'Apply for Passport',
             link:'/user/add',
             restricted:true
         },

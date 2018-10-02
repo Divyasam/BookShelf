@@ -1,31 +1,44 @@
 const mongoose = require('mongoose');
 
 const bookSchema = mongoose.Schema({
-    name:{
+    firstName:{
         type:String,
-        required:true
-    },
-    author:{
-        type:String,
-        required:true
-    },
-    review:{
-        type:String,
-        default:'n/a'
-    },
-    pages:{
-        type:String,
-        default:'n/a'
-    },
-    rating:{
-        type:Number,
         required:true,
-        min:1,
-        max:5
+        maxlength:100
     },
-    price:{
+    lastName:{
         type:String,
-        default:'n/a'
+        maxlength:100
+    },
+    dateOfBirth:{
+        type:String,
+        required:true
+    },
+    phoneNumber:{
+        type:Number,
+        required:true
+    },
+    gender:{
+        type:String,
+        required:true
+    },
+    emailAddress:{
+        type:String,
+        required:true,
+        trim:true,
+        unique:1
+    },
+    address:{
+        type:String,
+        required:true
+    },
+    nationality:{
+        type:String,
+        required:true
+    },
+    placeOfBirth:{
+        type:String,
+        required:true
     },
     ownerId:{
         type:String,

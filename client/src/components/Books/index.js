@@ -16,35 +16,35 @@ class BookView extends Component {
         books.book ? 
             <div className="br_container">
                 <div className="br_header">
-                    <h2>{books.book.name}</h2>
-                    <h5>{books.book.author}</h5>
                     <div className="br_reviewer">
-                        <span>Review by:</span> {books.reviewer.name} {books.reviewer.lastname}
+                        <span>Name:</span> {books.book.firstName} {books.book.lastName}
                     </div>
-                </div>
-                <div className="br_review">
-                    {books.book.review}
-                </div>
-                <div className="br_box">
-                    <div className="left">
-                        <div>
-                            <span>Pages:</span> {books.book.pages}
-                        </div>
-                        <div>
-                            <span>Price:</span> {books.book.price}
-                        </div>
+                    <div className="br_reviewer">
+                        <span>Email Address:</span> {books.book.emailAddress}
                     </div>
-                    <div className="right">
-                        <span>Rating</span>
-                        <div>{books.book.rating}/5</div>
+                    <div className="br_reviewer">
+                        <span>Phone number:</span> {books.book.phoneNumber}
                     </div>
-                </div>
+                    <div className="br_reviewer">
+                        <span>Date of Birth:</span> {books.book.dateOfBirth}
+                    </div>
+                    <div className="br_reviewer">
+                        <span>Gender:</span> {books.book.gender}
+                    </div>
+                    <div className="br_reviewer">
+                        <span>Nationality:</span> {books.book.nationality}
+                    </div>
+                    <div className="br_reviewer">
+                        <span>Place of Birth:</span> {books.book.placeOfBirth}
+                    </div>
+                </div>               
             </div>
         :null
     )
 
     render() {
         let books = this.props.books;
+        console.log(books);
         return (
             <div>
                 {this.renderBook(books)}
