@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+//retreiving applicant details in the front page - not used
 export function getBooks(
     limit = 10,
     start = 0,
@@ -24,6 +25,7 @@ export function getBooks(
 
 }
 
+//on click of an applicant after applying for passport
 export function getBookWithReviewer(id){
     const request = axios.get(`/api/getBook?id=${id}`)
 
@@ -47,6 +49,7 @@ export function getBookWithReviewer(id){
     }
 }
 
+//clear when component unmounts
 export function clearBookWithReviewer(){
     return {
         type:'CLEAR_BOOK_W_REVIEWER',
@@ -57,6 +60,7 @@ export function clearBookWithReviewer(){
     }
 }
 
+//user applying for passport
 export function addBook(book){
     const request = axios.post('/api/book',book)
         .then(response => response.data);
@@ -67,6 +71,7 @@ export function addBook(book){
     }
 }
 
+//component unmount after applying for passport 
 export function clearNewBook() {
     return {
         type:'CLEAR_NEWBOOK',
@@ -74,6 +79,7 @@ export function clearNewBook() {
     }
 }
 
+//display list of applicants applied under the particular admin
 export function getUserPosts(userId){
     const request = axios.get(`/api/user_posts?user=${userId}`)
                     .then(response => response.data)
@@ -84,6 +90,7 @@ export function getUserPosts(userId){
     }
 }
 
+//retreiving the user details corresponding to the passport id
 export function getBook(id){
     const request = axios.get(`/api/getBook?id=${id}`)
                     .then(response => response.data);
@@ -94,7 +101,7 @@ export function getBook(id){
     }
 }
 
-
+//editing the details of passport applicant
 export function updateBook(data){
     const request = axios.post(`/api/book_update`,data)
                 .then(response => response.data);
@@ -106,6 +113,7 @@ export function updateBook(data){
 
 }
 
+//deleting the passport applicant details
 export function deleteBook(id){
     const request = axios.delete(`/api/delete_book?id=${id}`)
                     .then(response => response.data)
@@ -116,6 +124,7 @@ export function deleteBook(id){
     }
 }
 
+//component unmount after editing/deleting
 export function clearBook(){
     return{
         type:'CLEAR_BOOK',
@@ -130,6 +139,7 @@ export function clearBook(){
 
 /*========= USER ===========*/
 
+//admin login
 export function loginUser({email,password}){
     const request = axios.post('/api/login',{email,password})
                 .then(response => response.data)
@@ -140,6 +150,7 @@ export function loginUser({email,password}){
     }
 }
 
+//authentication
 export function auth(){
     const request = axios.get('/api/auth')
                 .then(response => response.data);
@@ -151,6 +162,7 @@ export function auth(){
 
 }
 
+//retreive admin details
 export function getUsers(){
     const request = axios.get(`/api/users`)
                     .then(response => response.data);
@@ -161,7 +173,7 @@ export function getUsers(){
     }
 }
 
-
+//register new admin
 export function userRegister(user,userList){
     const request = axios.post(`/api/register`,user)
 

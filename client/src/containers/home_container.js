@@ -10,7 +10,6 @@ class HomeContainer extends Component {
         this.props.dispatch(getBooks(1,0,'desc'))
     }
 
-
     renderItems = (books) => (
         books.list ?  
             books.list.map( item => (
@@ -27,11 +26,11 @@ class HomeContainer extends Component {
     render() {
         return (
             <div>
-               {this.renderItems(this.props.books)}
+               {this.renderItems(this.props.books)} 
                <div 
                     className="loadmore"
                     onClick={this.loadmore}
-                >Load More</div>
+                >Load More</div> 
             </div>
         );
     }

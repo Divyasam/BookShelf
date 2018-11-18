@@ -54,9 +54,7 @@ class Blockchain{
       console.log(`New hash: ${newBlock.hash}`);
       app.get('/api/new',(req,res)=>{
             res.send({
-              name: name,
-              previousBlockHash: newBlock.previousBlockHash,
-              Newhash: newBlock.hash
+              name: newBlock
             })    
       })
       await leveldbinst.addBlock(newBlock.height, JSON.stringify(newBlock));
@@ -183,8 +181,9 @@ app.post('/api/book',(req,res)=>{
     const book = new Book(req.body)
 
     const name = req.body.firstName;
+    let newBlock = new Block(name);
     
-        blockChain.addBlock(new Block(name)).then((req, res) => {
+        blockChain.addBlock(newBlock).then((req, res) => {
             //console.log(res.)
         });
 
