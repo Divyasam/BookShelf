@@ -1,12 +1,4 @@
-'''
-Implement  Dlib Face alignment strategy
 
-However, this method/approach doesn't deform the original image like Dlib does.
-
-This also categorizes the face in 3 types: Center, Left, Right
-
-Align face based on facial landmarks
-'''
 import math
 
 import cv2
@@ -25,17 +17,8 @@ class AlignCustom(object):
         return "Center"
 
     def list2colmatrix(self, pts_list):
-        """
-            convert list to column matrix
-        Parameters:
-        ----------
-            pts_list:
-                input list
-        Retures:
-        -------
-            colMat:
-
-        """
+        
+       
         assert len(pts_list) > 0
         colMat = []
         for i in range(len(pts_list)):
