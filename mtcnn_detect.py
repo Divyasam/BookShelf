@@ -1,8 +1,4 @@
-'''
-Tensorflow implementation of the mtcnn face detection algorithm
 
-Credit: DavidSandBerg for implementing this method on tensorflow
-'''
 from six import string_types, iteritems
 import numpy as np
 import tensorflow as tf
@@ -11,12 +7,7 @@ import os
 
 class MTCNNDetect(object):
     def __init__(self, face_rec_graph, model_path = "models", threshold = [0.6, 0.7, 0.7], factor = 0.709, scale_factor = 1):
-        '''
-        :param face_rec_sess: FaceRecSession
-        :param threshold: detection threshold
-        :param factor: default 0.709 image pyramid -- magic number
-        :param model_path:
-        '''
+       
         self.threshold = threshold
         self.factor = factor
         self.scale_factor = scale_factor;
@@ -214,11 +205,7 @@ class Network(object):
         raise NotImplementedError('Must be implemented by the subclass.')
 
     def load(self, data_path, session, ignore_missing=False):
-        '''Load network weights.
-        data_path: The path to the numpy-serialized network weights
-        session: The current TensorFlow session
-        ignore_missing: If true, serialized weights for missing layers are ignored.
-        '''
+        
         data_dict = np.load(data_path, encoding='latin1').item()  # pylint: disable=no-member
 
         for op_name in data_dict:
@@ -232,9 +219,7 @@ class Network(object):
                             raise
 
     def feed(self, *args):
-        '''Set the input(s) for the next operation by replacing the terminal nodes.
-        The arguments can be either layer names or the actual layers.
-        '''
+        
         assert len(args) != 0
         self.terminals = []
         for fed_layer in args:
