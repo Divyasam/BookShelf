@@ -136,11 +136,11 @@ app.get('/api/auth',auth,(req,res)=>{
 
 app.get('/api/block',(req,res)=>{
         //let name = req.query.firstName;
-        let name2= 'df';
-       // let newBlock = new Block(name);
-    res.json({
-           name: name2
-        })
+        res.json([
+          { "name":"Divya", "previousHash":"5a9d6e071f56e2a5737ec87f898ea87b83a65962bd38130022c366336aa615de", "nextHash": "0ea16bb14d86616fbd6d321caba7ee5f2146db830979a28a6e8df18a5104251c" },
+          { "name":"Anirrudh", "previousHash":"0ea16bb14d86616fbd6d321caba7ee5f2146db830979a28a6e8df18a5104251c", "nextHash": "6ca51c9c85f176bf5b6a2e8af223a40898082bd37d8b4acd6b6370afac5528b5" },
+          { "name":"Akshay", "previousHash":"6ca51c9c85f176bf5b6a2e8af223a40898082bd37d8b4acd6b6370afac5528b5", "nextHash": "aaf8ef6f7392f371e012e11b69183baf8f3be9e21a4e275b966862d257d3f72f" }
+          ]) 
         // blockChain.addBlock(newBlock).then((req, res) => {
            
         // });
