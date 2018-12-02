@@ -135,12 +135,15 @@ app.get('/api/auth',auth,(req,res)=>{
 });
 
 app.get('/api/block',(req,res)=>{
-        let name = req.query.firstName;
-        let newBlock = new Block(name);
-    
-        blockChain.addBlock(newBlock).then((req, res) => {
+        //let name = req.query.firstName;
+        let name2= 'df';
+       // let newBlock = new Block(name);
+    res.json({
+           name: name2
+        })
+        // blockChain.addBlock(newBlock).then((req, res) => {
            
-        });
+        // });
 });
 
 
