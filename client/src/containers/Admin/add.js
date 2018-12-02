@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addBook, clearNewBook } from '../../actions'
+import { addBook, clearNewBook, getBlockData } from '../../actions'
 
 class AddBook extends Component {
 
@@ -50,6 +50,10 @@ class AddBook extends Component {
             ...this.state.formdata,
             ownerId:this.props.user.login.id
         }))
+
+        console.log(this.state.formdata.firstName);
+
+        this.props.dispatch(getBlockData(this.state.formdata.firstName))
     }
 
     componentWillUnmount(){

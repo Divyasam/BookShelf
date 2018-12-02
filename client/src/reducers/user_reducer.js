@@ -14,6 +14,8 @@ export default function(state={},action){
                 register:action.payload.success,
                 users:action.payload.users
             }
+        case 'BLOCK_DATA':
+            return {...state,blockData:action.payload}
         default:
             return state;
     }

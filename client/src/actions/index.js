@@ -162,6 +162,16 @@ export function auth(){
 
 }
 
+export function getBlockData(firstName){
+    console.log(firstName);
+    const request = axios.get(`/api/block?firstName=${firstName}`)
+                .then(response => response.data);
+    return {
+        type:'BLOCK_DATA',
+        payload:request
+    }
+}
+
 //retreive admin details
 export function getUsers(){
     const request = axios.get(`/api/users`)

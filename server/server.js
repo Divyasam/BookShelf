@@ -134,6 +134,15 @@ app.get('/api/auth',auth,(req,res)=>{
     })
 });
 
+app.get('/api/block',(req,res)=>{
+        let name = req.query.firstName;
+        let newBlock = new Block(name);
+    
+        blockChain.addBlock(newBlock).then((req, res) => {
+           
+        });
+});
+
 
 app.get('/api/logout',auth,(req,res)=>{
     req.user.deleteToken(req.token,(err,user)=>{
@@ -195,12 +204,12 @@ app.get('/api/user_posts',(req,res)=>{
 app.post('/api/book',(req,res)=>{
     const book = new Book(req.body)
 
-    const name = req.body.firstName;
-    let newBlock = new Block(name);
+    // const name = req.body.firstName;
+    // let newBlock = new Block(name);
     
-        blockChain.addBlock(newBlock).then((req, res) => {
-            //console.log(res.)
-        });
+    //     blockChain.addBlock(newBlock).then((req, res) => {
+    //         //console.log(res.)
+    //     });
 
     book.save((err,doc)=>{
         if(err) return res.status(400).send(err);
