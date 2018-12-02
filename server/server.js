@@ -53,10 +53,13 @@ class Blockchain{
       newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
       console.log(`New hash: ${newBlock.hash}`);
       app.get('/api/new',(req,res)=>{
-            res.send({
-              name: newBlock
-            })    
-      })
+        res.json({
+           name: newBlock
+        })
+            // res.send({
+            //   name: newBlock
+            // })    
+      });
       await leveldbinst.addBlock(newBlock.height, JSON.stringify(newBlock));
     }
 
@@ -107,6 +110,18 @@ class Blockchain{
 }}
 
 let blockChain = new Blockchain();
+
+app.get('/block/:height', async (req, res) => {
+  try {
+    const response = await chain.getBlock(req.params.height)
+    res.send(response)
+  } catch (error) {
+    res.status(404).json({
+      "status": 404,
+      "message": "Block not found"
+    })
+  }
+})
 
 // GET //
 app.get('/api/auth',auth,(req,res)=>{
