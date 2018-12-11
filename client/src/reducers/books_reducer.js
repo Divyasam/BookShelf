@@ -38,6 +38,10 @@ export default function(state={},action){
                 book:action.payload.book,
                 postDeleted:action.payload.postDeleted
             }
+        case 'GET_TWITTERUSERNAME':
+            return {
+                ...state, twitterData: action.payload
+            }
         default:
             return state;
     }

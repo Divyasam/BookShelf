@@ -1,8 +1,27 @@
 import React, { Component } from 'react';
-import { getBookWithReviewer, clearBookWithReviewer } from '../../actions';
+import { getBookWithReviewer, clearBookWithReviewer, passTwitterData } from '../../actions';
 import { connect } from 'react-redux';
+const cp = require('child_process');
 
 class BookView extends Component {
+
+    state = {
+        formdata:{
+            twitterUserName: ''
+        }
+    }
+
+
+    handleInput = (event,name) => {
+        const newFormdata = {
+            ...this.state.formdata
+        }
+        newFormdata[name] = event.target.value
+
+        this.setState({
+            formdata:newFormdata
+        })
+    }
 
     componentWillMount(){
         this.props.dispatch(getBookWithReviewer(this.props.match.params.id))
@@ -11,6 +30,16 @@ class BookView extends Component {
     componentWillUnmount(){
         this.props.dispatch(clearBookWithReviewer())
     }
+
+    sentimentAnalysis = (e) => {
+        e.preventDefault();
+        const UserName = this.state.formdata.twitterUserName;
+        this.props.dispatch(passTwitterData({
+            ...this.state.formdata,
+            twitterUserName:UserName
+        }))
+    }
+
 
     renderBook = (books) => (
         books.book ? 
@@ -46,9 +75,22 @@ class BookView extends Component {
         let books = this.props.books;
         console.log(books);
         return (
+        <div>
             <div>
                 {this.renderBook(books)}
             </div>
+            <form onSubmit={this.sentimentAnalysis}>
+              <div className="form_element">
+                <input
+                            type="text"
+                            placeholder="Twitter UserName"
+                            value={this.state.formdata.twitterUserName}
+                            onChange={(event)=>this.handleInput(event,'twitterUserName')}
+                />
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+        </div>
         );
     }
 }

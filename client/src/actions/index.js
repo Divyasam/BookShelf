@@ -25,6 +25,17 @@ export function getBooks(
 
 }
 
+export function passTwitterData(userName){
+   // let name = userName;
+    const request = axios.post('/api/twitter', userName)
+                    .then(response => response.data);
+
+    return {
+        type:'GET_TWITTERUSERNAME',
+        payload:request    
+    }
+}
+
 //on click of an applicant after applying for passport
 export function getBookWithReviewer(id){
     const request = axios.get(`/api/getBook?id=${id}`)

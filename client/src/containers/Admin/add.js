@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addBook, clearNewBook, getBlockData } from '../../actions'
+import { addBook, clearNewBook, getBlockData } from '../../actions';
+
 
 class AddBook extends Component {
 
@@ -153,7 +154,10 @@ class AddBook extends Component {
                             this.showNewBook(this.props.books.newbook)
                         :null
                     }
+                    
+                    
                 </form>
+
             </div>
         );
     }

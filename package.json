@@ -27,6 +27,7 @@
     "level": "^4.0.0",
     "moment-js": "^1.1.15",
     "mongoose": "^4.10.8",
+    "python-shell": "^1.0.6",
     "react-scripts": "^1.1.5"
   }
 }

@@ -6,18 +6,43 @@ const SHA256 = require('crypto-js/sha256');
 const leveldbinst = require('./levelSandbox');
 const config = require('./config/config').get(process.env.NODE_ENV);
 const app = express();
+const spawn = require('child_process').spawn;
+
+    // const pyProcess = spawn('python',["./main.py","mahesh"]);
+    
+    // // //console.log(req.body);
+    // // cp.(cmd,function(err,res){
+    // //    console.log('here');
+    // //         console.log(err,res);
+    // // })  
+    // pyProcess.stdout.on('data',(data)=>{
+    //   console.log('Here');
+    //   // console.log(data);
+    // })
+
+// const PythonShell = require('python-shell').run;
+ 
+// PythonShell.run('main.py', null, function (err) {
+//   if (err) throw err;
+//   console.log('finished');
+// });
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DATABASE)
 
 const { User } = require('./models/user'); 
 const { Book } = require('./models/book');
+const { Twitter } = require('./models/twitter');
 const { auth} = require('./middleware/auth')
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(express.static('client/build'))
+
+        // cp.exec('node -v',function(err,res){
+        //     console.log(err,res);
+        // })
 
 class Block{
     constructor(data){
@@ -52,14 +77,14 @@ class Blockchain{
 
       newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
       console.log(`New hash: ${newBlock.hash}`);
-      app.get('/api/new',(req,res)=>{
-        res.json({
-           name: newBlock
-        })
-            // res.send({
-            //   name: newBlock
-            // })    
-      });
+      // app.get('/api/new',(req,res)=>{
+      //   res.json({
+      //      name: newBlock
+      //   })
+      //       // res.send({
+      //       //   name: newBlock
+      //       // })    
+      // });
       await leveldbinst.addBlock(newBlock.height, JSON.stringify(newBlock));
     }
 
@@ -124,6 +149,36 @@ app.get('/block/:height', async (req, res) => {
 })
 
 // GET //
+app.post('/api/twitter',(req,res)=>{
+    const twitter = new Twitter(req.body)
+    //console.log(req.body);
+
+    twitter.save((err,doc)=>{
+        if(err) return res.status(400).send(err);
+        res.status(200).json({
+            post:true,
+            twitterId: doc._id
+        })
+    })
+
+    const UserName = req.body.twitterUserName;
+
+  //  let cmd = `Sentiment python main.py ${UserName}`; 
+
+    // const pyProcess = spawn('python',["./main.py","mahesh"]);
+    
+    // // //console.log(req.body);
+    // // cp.(cmd,function(err,res){
+    // //    console.log('here');
+    // //         console.log(err,res);
+    // // })  
+    // pyProcess.stdout.on('data',(data)=>{
+    //   console.log('Here');
+    //   console.log(data);
+    // })
+    console.log("After process")
+});
+
 app.get('/api/auth',auth,(req,res)=>{
     res.json({
         isAuth:true,
@@ -207,12 +262,12 @@ app.get('/api/user_posts',(req,res)=>{
 app.post('/api/book',(req,res)=>{
     const book = new Book(req.body)
 
-    // const name = req.body.firstName;
-    // let newBlock = new Block(name);
+    const name = req.body.firstName;
+    let newBlock = new Block(name);
     
-    //     blockChain.addBlock(newBlock).then((req, res) => {
-    //         //console.log(res.)
-    //     });
+        blockChain.addBlock(newBlock).then((req, res) => {
+            //console.log(res.)
+        });
 
     book.save((err,doc)=>{
         if(err) return res.status(400).send(err);
